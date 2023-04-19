@@ -8,4 +8,4 @@ function create(baseURL, options) {
   return instance
 }
 
-export const postsApi = create('http://localhost:3001/posts')
+export const postsApi = create('http://localhost:3000/api/posts')

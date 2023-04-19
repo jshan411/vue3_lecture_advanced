@@ -54,11 +54,12 @@ const post = ref({})
 const fetchPost = async () => {
   try {
     const { data } = await getPostById(props.id)
-    setPost(data)
+    setPost(data[0])
     // post.value = { ...data }
     // post.title = data.title
     // post.content = data.content
     // post.createdAt = data.createdAt
+    // console.log('data: ', data[0])
   } catch (error) {
     console.error(error)
   }

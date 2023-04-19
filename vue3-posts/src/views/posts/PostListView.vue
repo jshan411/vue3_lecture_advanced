@@ -52,12 +52,12 @@
   </div>
   <hr class="my-5" />
   <AppCard>
-    <PostDetailView :id="2"></PostDetailView>
+    <PostDetailView :id="10"></PostDetailView>
   </AppCard>
 </template>
 
 <script setup>
-import { ref, watchEffect } from 'vue'
+import { ref, watch, watchEffect } from 'vue'
 import PostItem from '../../components/posts/PostItem.vue'
 import { getPosts } from '@/api/posts'
 import { useRouter } from 'vue-router'
@@ -67,8 +67,6 @@ import { computed } from '@vue/reactivity'
 
 const posts = ref([])
 const params = ref({
-  _sort: 'createdAt',
-  _order: 'desc',
   _limit: 3,
   _page: 1,
   title_like: ''
@@ -81,15 +79,31 @@ const fetchPosts = async () => {
   // const { data } = await getPosts()
   // posts.value = data
   try {
-    const { data, headers } = await getPosts(params.value)
-    posts.value = data
-    totalCount.value = headers['x-total-count']
+    const { data } = await getPosts(params.value)
+    posts.value = data.posts_results
+    totalCount.value = data.total_length
+    // console.log('data: ', data)
+    // console.log('totalCount: ', totalCount.value)
+    // // totalCount.value = posts.value.length
+    // console.log('params._limit: ', params.value._limit)
+    // console.log('pageCount: ', pageCount.value)
+    // console.log('page: ', params.value._page)
   } catch (error) {
     console.error(error)
   }
 }
 // fetchPosts()
 watchEffect(fetchPosts)
+
+watch(
+  () => params.value._limit,
+  (newVal, oldVal) => {
+    if (newVal !== oldVal) {
+      params.value._page = 1
+    }
+  }
+)
+
 const router = useRouter()
 const goPostDetailView = (id) => {
   //   router.push(`/posts/${id}`)
