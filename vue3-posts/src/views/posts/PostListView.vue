@@ -82,7 +82,7 @@ const fetchPosts = async () => {
     const { data } = await getPosts(params.value)
     posts.value = data.posts_results
     totalCount.value = data.total_length
-    // console.log('data: ', data)
+    // console.log('data: ', data)/
     // console.log('totalCount: ', totalCount.value)
     // // totalCount.value = posts.value.length
     // console.log('params._limit: ', params.value._limit)
