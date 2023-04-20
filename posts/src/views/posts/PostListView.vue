@@ -5,7 +5,12 @@
     <form @submit.prevent>
       <div class="row g-3">
         <div class="col">
-          <input v-model="params.title_like" type="text" class="form-control" />
+          <input
+            v-model="params.title_like"
+            type="text"
+            class="form-control"
+            placeholder="검색어를 입력 후 엔터를 눌러주세요."
+          />
         </div>
         <div class="col-3">
           <select v-model="params._limit" class="form-select">
