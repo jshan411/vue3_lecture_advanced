@@ -55,6 +55,7 @@ const fetchPost = async () => {
   try {
     const { data } = await getPostById(props.id)
     setPost(data[0])
+    // console.log(data)
     // post.value = { ...data }
     // post.title = data.title
     // post.content = data.content

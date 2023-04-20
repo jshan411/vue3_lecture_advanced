@@ -29,7 +29,8 @@ const form = ref({
 const fetchPost = async () => {
   try {
     const { data } = await getPostById(id)
-    setForm(data)
+    // console.log(data[0])
+    setForm(data[0])
   } catch (error) {
     console.error(error)
   }

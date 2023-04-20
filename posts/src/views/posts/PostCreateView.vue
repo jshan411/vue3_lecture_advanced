@@ -17,6 +17,7 @@ import { createPost } from '../../api/posts'
 import { ref } from 'vue'
 import PostForm from '../../components/posts/PostForm.vue'
 
+// back에서 저장할 때를 저장할거라 사실상 필요 없음
 function formatDateToYYYYMMDD(date) {
   const year = String(date.getFullYear()).slice(-2)
   const month = String(date.getMonth() + 1).padStart(2, '0')
